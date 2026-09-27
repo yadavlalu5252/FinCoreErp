@@ -1,7 +1,9 @@
-﻿namespace FinCoreErp.Repository
+﻿using FinCoreErp.DTO.Authentication;
+
+namespace FinCoreErp.Repository
 {
     public interface IAuthService
     {
-        Task Login();
+        Task<bool> Register(RegisterUserDto dto);
     }
 }
