@@ -14,6 +14,15 @@ builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(
     ));
 
 
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 var app = builder.Build();
@@ -29,13 +38,15 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 
+app.UseSession();
+
 app.UseAuthorization();
 
 app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Auth}/{action=Index}/{id?}")
+    pattern: "{controller=Auth}/{action=Register}/{id?}")
     .WithStaticAssets();
 
 

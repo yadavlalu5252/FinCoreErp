@@ -21,9 +21,9 @@ namespace FinCoreErp.Models
         [StringLength(255)]
         public string Description { get; set; }
 
-        [ForeignKey("User")]
-        public int? UserId { get; set; }
-        public User User { get; set; }
+        //[ForeignKey("User")]
+        //public int? UserId { get; set; }
+        //public User User { get; set; }
 
         public byte? IsActive { get; set; }
         public DateTime? CreatedAt { get; set; }
