@@ -1,0 +1,93 @@
+@model List<FinCoreErp.Models.Vendor>
+
+<h2>Vendor Data</h2>
+
+<a asp-action="Create" class="btn btn-primary">Add Vendor</a>
+
+<br />
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Vendor Code</th>
+            <th scope="col">Category</th>
+            <th scope="col">Company</th>
+            <th scope="col">Bank Account</th>
+            <th scope="col">PAN</th>
+            <th scope="col">Performance Score</th>
+            <th scope="col">Verified</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var obj in Model)
+        {
+            <tr>
+
+                <td>
+                    @obj.VendorId
+                </td>
+
+                <td>
+                    @obj.VendorCode
+                </td>
+
+                <td>
+                    @obj.VendorCategory?.CategoryName
+                </td>
+
+                <td>
+                    @obj.Company?.CompanyCode
+                </td>
+
+                <td>
+                    @obj.BankAccount
+                </td>
+
+                <td>
+                    @obj.PAN
+                </td>
+
+                <td>
+                    @obj.PerformanceScore
+                </td>
+
+                <td>
+                    @(obj.IsVerified == 1 ? "Yes" : "No")
+                </td>
+
+                <td>
+                    @(obj.IsActive == 1 ? "Active" : "Inactive")
+                </td>
+
+                <td>
+                    <a asp-action="Edit"
+                       asp-route-id="@obj.VendorId"
+                       class="btn btn-sm btn-success">
+                        Edit
+                    </a>
+
+                    <a asp-action="Details"
+                       asp-route-id="@obj.VendorId"
+                       class="btn btn-sm btn-info">
+                        Details
+                    </a>
+
+                    <a asp-controller="VendorDocument"
+                       asp-action="Index"
+                       asp-route-vendorId="@obj.VendorId"
+                       class="btn btn-sm btn-warning">
+                        Documents
+                    </a>
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>
