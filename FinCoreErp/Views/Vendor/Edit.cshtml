@@ -1,0 +1,94 @@
+@model FinCoreErp.Models.Vendor
+
+<h2>Edit Vendor</h2>
+
+<form asp-action="Edit">
+
+    <input type="hidden" asp-for="VendorId" />
+
+    <div class="form-group">
+        <label>Vendor Code</label>
+        <input asp-for="VendorCode" class="form-control" />
+        <span asp-validation-for="VendorCode" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <label>Vendor Category</label>
+        <select asp-for="VendorCategoryId"
+                asp-items="ViewBag.VendorCategories"
+                class="form-control">
+            <option value="">-- Select Category --</option>
+        </select>
+        <span asp-validation-for="VendorCategoryId" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <label>Company</label>
+        <select asp-for="CompanyId"
+                asp-items="ViewBag.Companies"
+                class="form-control">
+            <option value="">-- Select Company --</option>
+        </select>
+        <span asp-validation-for="CompanyId" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <label>Bank Account</label>
+        <input asp-for="BankAccount" class="form-control" />
+        <span asp-validation-for="BankAccount" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <label>PAN</label>
+        <input asp-for="PAN" class="form-control" />
+        <span asp-validation-for="PAN" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <label>Performance Score</label>
+        <input asp-for="PerformanceScore" class="form-control" />
+        <span asp-validation-for="PerformanceScore" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <label>Is Verified</label>
+        <select asp-for="IsVerified" class="form-control">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <label>Status</label>
+        <select asp-for="IsActive" class="form-control">
+            <option value="1">Active</option>
+            <option value="0">Inactive</option>
+        </select>
+    </div>
+
+    <br />
+
+    <input type="submit"
+           value="Save"
+           class="btn btn-primary" />
+
+    <a asp-action="Index"
+       class="btn btn-secondary">
+        Back
+    </a>
+
+</form>

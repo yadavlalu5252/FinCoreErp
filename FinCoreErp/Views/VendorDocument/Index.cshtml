@@ -1,0 +1,71 @@
+﻿@model List<FinCoreErp.Models.Document>
+
+<h2>Vendor Documents</h2>
+
+<a asp-action="Create"
+   asp-route-vendorId="@ViewBag.VendorId"
+   class="btn btn-primary">
+    Upload Document
+</a>
+
+<br />
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Document ID</th>
+            <th>Document Type</th>
+            <th>File Name</th>
+            <th>File Type</th>
+            <th>Created At</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td>@obj.DocumentsId</td>
+
+                <td>
+                    @obj.DocumentType?.DocumentCategory
+                </td>
+
+                <td>
+                    @obj.FileName
+                </td>
+
+                <td>
+                    @obj.FileType
+                </td>
+
+                <td>
+                    @obj.CreatedAt
+                </td>
+
+                <td>
+                    <a href="@obj.FilePath"
+                       target="_blank"
+                       class="btn btn-sm btn-info">
+                        View
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@obj.DocumentsId"
+                       asp-route-vendorId="@ViewBag.VendorId"
+                       class="btn btn-sm btn-danger">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-controller="Vendor"
+   asp-action="Index"
+   class="btn btn-secondary">
+    Back to Vendors
+</a>
