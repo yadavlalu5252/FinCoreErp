@@ -17,10 +17,18 @@ namespace FinCoreErp.Service
         public async Task<bool> Register(RegisterUserDto dto)
         {
             var existingUser = await db.Users.FirstOrDefaultAsync(x => x.Email == dto.Email);
+<<<<<<< Updated upstream
             if(existingUser != null)
             {
                 return false;
             }
+=======
+            if (existingUser != null)
+            {
+                return false;
+            }
+
+>>>>>>> Stashed changes
             User user = new User
             {
                 FullName = dto.FullName,
