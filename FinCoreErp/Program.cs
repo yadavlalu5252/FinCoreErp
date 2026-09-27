@@ -15,6 +15,10 @@ builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(
 
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IVendorDocumentRepository, VendorDocumentService>();
+
+builder.Services.AddScoped<IVendorRepository, VendorService>();
+
 
 var app = builder.Build();
 
@@ -35,7 +39,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Auth}/{action=Index}/{id?}")
+    pattern: "{controller=Vendor}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 

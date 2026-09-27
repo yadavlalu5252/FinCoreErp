@@ -30,7 +30,7 @@ namespace FinCoreErp.Service
             {
                 FullName = dto.FullName,
                 Email = dto.Email,
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password),
+             //   PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password),
                 Phone = dto.Phone,
                 IsActive = 1,
                 CreatedAt = DateTime.Now
