@@ -1,0 +1,87 @@
+@model FinCoreErp.Models.Vendor
+
+<h2>Vendor Details</h2>
+
+<table class="table">
+
+    <tr>
+        <th>Vendor ID</th>
+        <td>@Model.VendorId</td>
+    </tr>
+
+    <tr>
+        <th>Vendor Code</th>
+        <td>@Model.VendorCode</td>
+    </tr>
+
+    <tr>
+        <th>Vendor Category</th>
+        <td>@Model.VendorCategory?.CategoryName</td>
+    </tr>
+
+    <tr>
+        <th>Company</th>
+        <td>@Model.Company?.CompanyCode</td>
+    </tr>
+
+    <tr>
+        <th>Bank Account</th>
+        <td>@Model.BankAccount</td>
+    </tr>
+
+    <tr>
+        <th>PAN</th>
+        <td>@Model.PAN</td>
+    </tr>
+
+    <tr>
+        <th>Performance Score</th>
+        <td>@Model.PerformanceScore</td>
+    </tr>
+
+    <tr>
+        <th>Verified</th>
+        <td>
+            @(Model.IsVerified == 1 ? "Yes" : "No")
+        </td>
+    </tr>
+
+    <tr>
+        <th>Status</th>
+        <td>
+            @(Model.IsActive == 1 ? "Active" : "Inactive")
+        </td>
+    </tr>
+
+    <tr>
+        <th>Created At</th>
+        <td>@Model.CreatedAt</td>
+    </tr>
+
+    <tr>
+        <th>Modified At</th>
+        <td>@Model.ModifiedAt</td>
+    </tr>
+
+    <tr>
+        <th>Created By</th>
+        <td>@Model.CreatedBy</td>
+    </tr>
+
+    <tr>
+        <th>Modified By</th>
+        <td>@Model.ModifiedBy</td>
+    </tr>
+
+</table>
+
+<a asp-action="Edit"
+   asp-route-id="@Model.VendorId"
+   class="btn btn-success">
+    Edit
+</a>
+
+<a asp-action="Index"
+   class="btn btn-secondary">
+    Back
+</a>

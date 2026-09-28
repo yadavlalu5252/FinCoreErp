@@ -29,6 +29,10 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IBudgetCategoryService, BudgetCategoryService>();
 builder.Services.AddScoped<IBudgetService, BudgetService>();
 builder.Services.AddScoped<IBudgetLineService, BudgetLineService>();
+builder.Services.AddScoped<IVendorDocumentRepository, VendorDocumentService>();
+
+builder.Services.AddScoped<IVendorRepository, VendorService>();
+
 
 var app = builder.Build();
 
