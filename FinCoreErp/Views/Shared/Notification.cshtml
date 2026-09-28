@@ -1,0 +1,44 @@
+﻿<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+@if (TempData["LoginSuccess"] != null)
+{
+    <script>
+        toastr.success('@TempData["LoginSuccess"]');
+    </script>
+}
+@if (TempData["LogoutSuccess"] != null)
+{
+    <script>
+        toastr.success('@TempData["LogoutSuccess"]');
+    </script>
+}
+
+
+
+@if (TempData["LoginError"] != null)
+{
+    <script>
+        toastr.error('@TempData["LoginError"]');
+    </script>
+}
+@if (TempData["RoleError"] != null)
+{
+    <script>
+        toastr.error('@TempData["RoleError"]');
+    </script>
+}
+
+@if (TempData["Info"] != null)
+{
+    <script>
+        toastr.info('@TempData["Info"]');
+    </script>
+}
+
+@if (TempData["Warning"] != null)
+{
+    <script>
+        toastr.warning('@TempData["Warning"]');
+    </script>
+}

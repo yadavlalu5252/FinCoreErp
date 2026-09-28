@@ -29,3 +29,163 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+
+/* =========================
+   ADMIN LAYOUT
+========================= */
+
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.admin-sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background-color: #212529;
+    color: white;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
+}
+
+.sidebar-logo {
+    padding: 20px;
+    border-bottom: 1px solid #343a40;
+}
+
+    .sidebar-logo h2 {
+        margin: 0;
+        font-size: 22px;
+    }
+
+.sidebar-title {
+    padding: 20px 20px 10px;
+    margin: 0;
+    font-size: 12px;
+    color: #adb5bd;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    color: #dee2e6;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+    .sidebar-link:hover {
+        background-color: #343a40;
+        color: white;
+    }
+
+
+/* Remove default details arrow */
+
+details summary {
+    list-style: none;
+}
+
+    details summary::-webkit-details-marker {
+        display: none;
+    }
+
+
+/* Arrow */
+
+.menu-arrow {
+    margin-left: auto;
+}
+
+
+/* =========================
+   SUBMENU
+========================= */
+
+.submenu {
+    background-color: #343a40;
+}
+
+    .submenu a {
+        display: block;
+        padding: 10px 20px 10px 50px;
+        color: #ced4da;
+        text-decoration: none;
+    }
+
+        .submenu a:hover {
+            background-color: #495057;
+            color: white;
+        }
+
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.admin-content {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.admin-header {
+    height: 65px;
+    padding: 0 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.admin-content main {
+    flex: 1;
+    padding: 25px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.admin-content footer {
+    padding: 15px 0;
+}

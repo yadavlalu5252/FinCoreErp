@@ -1,0 +1,58 @@
+﻿@model FinCoreErp.DTO.Asset.AssetDisposalDto
+
+@{
+    ViewData["Title"] = "Asset Disposal";
+}
+
+<div class="container mt-4">
+
+    <h2>Asset Disposal</h2>
+
+    <form asp-action="Index" method="post">
+
+        <input type="hidden" asp-for="AssetId" />
+
+        <div class="mb-3">
+            <label asp-for="AssetId" class="form-label">
+                Asset ID
+            </label>
+
+            <input asp-for="AssetId"
+                   class="form-control"
+                   readonly />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="DisposalDate" class="form-label">
+                Disposal Date
+            </label>
+
+            <input asp-for="DisposalDate"
+                   type="date"
+                   class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="DisposalReason" class="form-label">
+                Disposal Reason
+            </label>
+
+            <textarea asp-for="DisposalReason"
+                      class="form-control"
+                      rows="3"
+                      placeholder="Enter disposal reason"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-danger">
+            Dispose Asset
+        </button>
+
+        <a asp-controller="AssetList"
+           asp-action="Index"
+           class="btn btn-secondary">
+            Cancel
+        </a>
+
+    </form>
+
+</div>

@@ -1,0 +1,230 @@
+﻿@model List<FinCoreErp.DTO.Budget.BudgetDto>
+@{
+    ViewData["Title"] = "Budgets";
+}
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<h3>Budgets</h3>
+
+<button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createModal">+ Add New</button>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach (var err in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@err.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
+
+<table id="budgetTable" class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Budget Code</th>
+            <th>Budget Name</th>
+            <th>Financial Year</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.BudgetCode</td>
+                <td>@item.BudgetName</td>
+                <td>@item.FinancialYear</td>
+                <td>@item.StartDate?.ToString("yyyy-MM-dd")</td>
+                <td>@item.EndDate?.ToString("yyyy-MM-dd")</td>
+                <td>@item.BudgetAmount</td>
+                <td>@(item.IsActive == 1 ? "Active" : "Inactive")</td>
+                <td>
+                    <button type="button" class="btn btn-sm btn-info btn-edit"
+                            data-id="@item.BudgetId"
+                            data-code="@item.BudgetCode"
+                            data-name="@item.BudgetName"
+                            data-fy="@item.FinancialYear"
+                            data-start="@item.StartDate?.ToString("yyyy-MM-dd")"
+                            data-end="@item.EndDate?.ToString("yyyy-MM-dd")"
+                            data-amount="@item.BudgetAmount"
+                            data-active="@item.IsActive">
+                        Edit
+                    </button>
+                    <button type="button" class="btn btn-sm btn-danger btn-delete"
+                            data-id="@item.BudgetId"
+                            data-name="@item.BudgetName">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Create Modal -->
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-hidden="true">
+    @{
+        var createDto = ViewBag.OpenModal == "create" ? ViewBag.FormData as FinCoreErp.DTO.Budget.BudgetDto : null;
+        var createIsActive = createDto == null || createDto.IsActive == 1;
+    }
+    <div class="modal-dialog" role="document">
+        <form method="post" action="/Budget/Create" id="createForm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Budget</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group mb-3">
+                        <label>Budget Code</label>
+                        <input type="text" class="form-control" name="BudgetCode" maxlength="20" value="@createDto?.BudgetCode" required />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Budget Name</label>
+                        <input type="text" class="form-control" name="BudgetName" maxlength="30" value="@createDto?.BudgetName" required />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Financial Year</label>
+                        <input type="text" class="form-control" name="FinancialYear" maxlength="20" value="@createDto?.FinancialYear" required />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Start Date</label>
+                        <input type="date" class="form-control" name="StartDate" value="@createDto?.StartDate?.ToString("yyyy-MM-dd")" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>End Date</label>
+                        <input type="date" class="form-control" name="EndDate" value="@createDto?.EndDate?.ToString("yyyy-MM-dd")" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Budget Amount</label>
+                        <input type="number" step="0.01" class="form-control" name="BudgetAmount" value="@createDto?.BudgetAmount" required />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-hidden="true">
+    @{
+        var editDto = ViewBag.OpenModal == "edit" ? ViewBag.FormData as FinCoreErp.DTO.Budget.BudgetDto : null;
+        var editIsActive = editDto == null || editDto.IsActive == 1;
+    }
+    <div class="modal-dialog" role="document">
+        <form method="post" action="/Budget/Edit">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Budget</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="edit_BudgetId" name="BudgetId" value="@(editDto?.BudgetId ?? 0)" />
+                    <div class="form-group mb-3">
+                        <label>Budget Code</label>
+                        <input type="text" id="edit_BudgetCode" class="form-control" name="BudgetCode" maxlength="20" value="@editDto?.BudgetCode" required />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Budget Name</label>
+                        <input type="text" id="edit_BudgetName" class="form-control" name="BudgetName" maxlength="30" value="@editDto?.BudgetName" required />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Financial Year</label>
+                        <input type="text" id="edit_FinancialYear" class="form-control" name="FinancialYear" maxlength="20" value="@editDto?.FinancialYear" required />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Start Date</label>
+                        <input type="date" id="edit_StartDate" class="form-control" name="StartDate" value="@editDto?.StartDate?.ToString("yyyy-MM-dd")" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>End Date</label>
+                        <input type="date" id="edit_EndDate" class="form-control" name="EndDate" value="@editDto?.EndDate?.ToString("yyyy-MM-dd")" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Budget Amount</label>
+                        <input type="number" step="0.01" id="edit_BudgetAmount" class="form-control" name="BudgetAmount" value="@editDto?.BudgetAmount" required />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Status</label>
+                        <select class="form-control" id="edit_IsActive" name="IsActive" autocomplete="off" required>
+                            <option value="1" selected="@editIsActive">Active</option>
+                            <option value="0" selected="@(!editIsActive)">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Hidden Delete form -->
+<form method="post" action="/Budget/Delete" id="deleteForm">
+    <input type="hidden" id="delete_Id" name="id" value="" />
+</form>
+
+@section Scripts {
+    @* DataTables and Bootstrap scripts/CSS moved to _Layout to avoid duplicates. *@
+    <script>
+        $(function () {
+            $('#budgetTable').DataTable({ responsive: true });
+
+            // Fresh create form every time "Add New" is clicked: empty fields, status set to Active.
+            $('#btnAddNew').on('click', function () {
+                document.getElementById('createForm').reset();
+                $('#create_IsActive').val('1');
+            });
+
+            $('.btn-edit').on('click', function () {
+                var d = $(this).data();
+                $('#edit_BudgetId').val(d.id);
+                $('#edit_BudgetCode').val(d.code);
+                $('#edit_BudgetName').val(d.name);
+                $('#edit_FinancialYear').val(d.fy);
+                $('#edit_StartDate').val(d.start);
+                $('#edit_EndDate').val(d.end);
+                $('#edit_BudgetAmount').val(d.amount);
+                $('#edit_IsActive').val(String(d.active));
+                $('#editModal').modal('show');
+            });
+
+            $('.btn-delete').on('click', function () {
+                var id = $(this).data('id');
+                var name = $(this).data('name');
+                if (confirm('Are you sure you want to delete "' + name + '"?')) {
+                    $('#delete_Id').val(id);
+                    $('#deleteForm').trigger('submit');
+                }
+            });
+
+            @if (ViewBag.OpenModal == "create")
+            {
+                    <text>$('#createModal').modal('show');</text>
+            }
+            else if (ViewBag.OpenModal == "edit")
+            {
+                    <text>$('#editModal').modal('show');</text>
+            }
+        });
+    </script>
+}

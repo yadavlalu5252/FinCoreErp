@@ -1,0 +1,201 @@
+﻿@model List<FinCoreErp.DTO.Budget.BudgetLineDto>
+@{
+    ViewData["Title"] = "Budget Lines";
+}
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<h3>Budget Lines</h3>
+
+<button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createModal">+ Add New</button>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach (var err in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@err.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
+
+<table id="lineTable" class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Budget</th>
+            <th>Category</th>
+            <th>Allocated Amount</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.BudgetName</td>
+                <td>@item.CategoryName</td>
+                <td>@item.AllocatedAmount</td>
+                <td>
+                    <button type="button" class="btn btn-sm btn-info btn-edit"
+                            data-id="@item.BudgetLineId"
+                            data-budget="@item.BudgetId"
+                            data-category="@item.BudgetCategoryId"
+                            data-amount="@item.AllocatedAmount">
+                        Edit
+                    </button>
+                    <button type="button" class="btn btn-sm btn-danger btn-delete"
+                            data-id="@item.BudgetLineId"
+                            data-name="@item.BudgetName - @item.CategoryName">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Create Modal -->
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-hidden="true">
+    @{
+        var createDto = ViewBag.OpenModal == "create" ? ViewBag.FormData as FinCoreErp.DTO.Budget.BudgetLineDto : null;
+    }
+    <div class="modal-dialog" role="document">
+        <form method="post" action="/BudgetLine/Create">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Budget Line</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group mb-3">
+                        <label>Budget</label>
+                        <select class="form-control" name="BudgetId" required>
+                            <option value="">-- Select Budget --</option>
+                            @foreach (var budget in ViewBag.Budgets)
+                            {
+                                <option value="@budget.BudgetId" selected="@(createDto != null && createDto.BudgetId == budget.BudgetId)">@budget.BudgetName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Budget Category</label>
+                        <select class="form-control" name="BudgetCategoryId" required>
+                            <option value="">-- Select Category --</option>
+                            @foreach (var category in ViewBag.Categories)
+                            {
+                                <option value="@category.BudgetCategoryId" selected="@(createDto != null && createDto.BudgetCategoryId == category.BudgetCategoryId)">@category.CategoryName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Allocated Amount</label>
+                        <input type="number" step="0.01" class="form-control" name="AllocatedAmount" value="@createDto?.AllocatedAmount" required />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-hidden="true">
+    @{
+        var editDto = ViewBag.OpenModal == "edit" ? ViewBag.FormData as FinCoreErp.DTO.Budget.BudgetLineDto : null;
+    }
+    <div class="modal-dialog" role="document">
+        <form method="post" action="/BudgetLine/Edit">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Budget Line</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="edit_BudgetLineId" name="BudgetLineId" value="@(editDto?.BudgetLineId ?? 0)" />
+                    <div class="form-group mb-3">
+                        <label>Budget</label>
+                        <select class="form-control" id="edit_BudgetId" name="BudgetId" required>
+                            <option value="">-- Select Budget --</option>
+                            @foreach (var budget in ViewBag.Budgets)
+                            {
+                                <option value="@budget.BudgetId" selected="@(editDto != null && editDto.BudgetId == budget.BudgetId)">@budget.BudgetName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Budget Category</label>
+                        <select class="form-control" id="edit_BudgetCategoryId" name="BudgetCategoryId" required>
+                            <option value="">-- Select Category --</option>
+                            @foreach (var category in ViewBag.Categories)
+                            {
+                                <option value="@category.BudgetCategoryId" selected="@(editDto != null && editDto.BudgetCategoryId == category.BudgetCategoryId)">@category.CategoryName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Allocated Amount</label>
+                        <input type="number" step="0.01" id="edit_AllocatedAmount" class="form-control" name="AllocatedAmount" value="@editDto?.AllocatedAmount" required />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Hidden Delete form -->
+<form method="post" action="/BudgetLine/Delete" id="deleteForm">
+    <input type="hidden" id="delete_Id" name="id" value="" />
+</form>
+
+@section Scripts {
+    <script>
+        $(function () {
+            $('#lineTable').DataTable({ responsive: true });
+
+            $('.btn-edit').on('click', function () {
+                var d = $(this).data();
+                $('#edit_BudgetLineId').val(d.id);
+                $('#edit_BudgetId').val(String(d.budget));
+                $('#edit_BudgetCategoryId').val(String(d.category));
+                $('#edit_AllocatedAmount').val(d.amount);
+                var editModalEl = document.getElementById('editModal');
+                var editModal = new bootstrap.Modal(editModalEl);
+                editModal.show();
+            });
+
+            $('.btn-delete').on('click', function () {
+                var id = $(this).data('id');
+                var name = $(this).data('name');
+                if (confirm('Are you sure you want to delete "' + name + '"?')) {
+                    $('#delete_Id').val(id);
+                    $('#deleteForm').trigger('submit');
+                }
+            });
+
+            @if (ViewBag.OpenModal == "create")
+            {
+                <text>$('#createModal').modal('show');</text>
+            }
+            else if (ViewBag.OpenModal == "edit")
+            {
+                <text>$('#editModal').modal('show');</text>
+            }
+        });
+    </script>
+}

@@ -1,6 +1,8 @@
 using FinCoreErp.Data;
 using FinCoreErp.Repository;
+using FinCoreErp.Repository.Budget;
 using FinCoreErp.Service;
+using FinCoreErp.Service.Budget;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +26,12 @@ builder.Services.AddSession(options =>
 });
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IAssetListService, AssetListService>();
+builder.Services.AddScoped<IAssetRegisterService, AssetRegisterService>();
+builder.Services.AddScoped<IAssetDisposalService, AssetDisposalService>();
+builder.Services.AddScoped<IBudgetCategoryService, BudgetCategoryService>();
+builder.Services.AddScoped<IBudgetService, BudgetService>();
+builder.Services.AddScoped<IBudgetLineService, BudgetLineService>();
 builder.Services.AddScoped<IVendorDocumentRepository, VendorDocumentService>();
 
 builder.Services.AddScoped<IVendorRepository, VendorService>();
