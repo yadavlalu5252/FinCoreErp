@@ -22,31 +22,15 @@
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="FullName" class="form-label">
-                                Full Name
-                            </label>
-
-                            <input asp-for="FullName"
-                                   class="form-control"
-                                   placeholder="Enter full name" />
-
-                            <span asp-validation-for="FullName"
-                                  class="text-danger">
-                            </span>
+                            <label asp-for="FullName" class="form-label">Full Name</label>
+                            <input asp-for="FullName" class="form-control" placeholder="Enter full name" />
+                            <span asp-validation-for="FullName" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="Email" class="form-label">
-                                Email
-                            </label>
-
-                            <input asp-for="Email"
-                                   class="form-control"
-                                   placeholder="Enter email" />
-
-                            <span asp-validation-for="Email"
-                                  class="text-danger">
-                            </span>
+                            <label asp-for="Email" class="form-label">Email</label>
+                            <input asp-for="Email" class="form-control" placeholder="Enter email" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
@@ -101,7 +85,7 @@
 
                     <div class="text-center mt-3">
                         <a asp-controller="Auth"
-                           asp-action="Index">
+                           asp-action="Login">
                             Already have an account? Login
                         </a>
                     </div>

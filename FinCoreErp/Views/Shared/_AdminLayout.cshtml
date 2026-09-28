@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewData["Title"] - FinCoreErp</title>
+
+    <link rel="stylesheet"
+          href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet"
+          href="~/css/site.css"
+          asp-append-version="true" />
+
+    <link rel="stylesheet"
+          href="~/FinCoreErp.styles.css"
+          asp-append-version="true" />
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+          <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    @RenderSection("Styles", required: false)
+
+</head>
+
+<body>
+
+    <div class="admin-layout">
+
+        <!-- Sidebar -->
+        <partial name="_Sidebar" />
+
+
+        <!-- Main Content -->
+        <div class="admin-content">
+
+            <!-- Header -->
+            <header class="admin-header">
+
+                <div class="header-left">
+
+                    <h5 class="mb-0">
+                        FinCore ERP
+                    </h5>
+
+                </div>
+
+
+                <div class="header-right">
+
+                    @if (Context.Session.GetInt32("UserId") != null)
+                    {
+                        <span>
+                            @Context.Session.GetString("Name")
+                        </span>
+                    }
+
+                </div>
+
+            </header>
+
+
+            <!-- Page Content -->
+            <main role="main" class="pb-3">
+
+                @RenderBody()
+
+            </main>
+
+
+            <!-- Footer -->
+            <footer class="border-top footer text-muted">
+
+                <div class="container">
+
+                    &copy; 2026 - FinCoreErp
+
+                </div>
+
+            </footer>
+
+        </div>
+
+    </div>
+
+
+    <!-- Scripts -->
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/js/site.js"
+            asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+
+</html>

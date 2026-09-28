@@ -34,13 +34,13 @@ namespace FinCoreErp.Models
         public string PasswordHash { get; set; }
 
         [Column("User Category")]
-        public string UserCategory { get; set; }
+        public string? UserCategory { get; set; }
 
         [StringLength(12)]
-        public string Phone { get; set; }
+        public string? Phone { get; set; }
 
         public DateTime? LastLogin { get; set; }
-        public string RefreshToken { get; set; }
+        //public string? RefreshToken { get; set; }
 
         [Required]
         public byte IsActive { get; set; }
@@ -50,12 +50,10 @@ namespace FinCoreErp.Models
 
         public DateTime? ModifiedAt { get; set; }
 
-        [Required]
         [ForeignKey("CreatedByUser")]
         public int? CreatedBy { get; set; }
         public User CreatedByUser { get; set; }
 
-        [Required]
         [ForeignKey("ModifiedByUser")]
         public int? ModifiedBy { get; set; }
         public User ModifiedByUser { get; set; }
