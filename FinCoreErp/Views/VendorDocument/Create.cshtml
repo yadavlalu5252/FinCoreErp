@@ -1,0 +1,51 @@
+﻿@model FinCoreErp.Models.Document
+
+<h2>Upload Vendor Document</h2>
+
+<form asp-action="Create"
+      method="post"
+      enctype="multipart/form-data">
+
+    <input type="hidden"
+           name="vendorId"
+           value="@ViewBag.VendorId" />
+
+    <div class="form-group">
+        <label>Document Type</label>
+
+        <select asp-for="DocumentTypeId"
+                asp-items="ViewBag.DocumentTypes"
+                class="form-control">
+
+            <option value="">-- Select Document Type --</option>
+
+        </select>
+
+        <span asp-validation-for="DocumentTypeId"
+              class="text-danger">
+        </span>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <label>Choose Document</label>
+
+        <input type="file"
+               name="file"
+               class="form-control" />
+    </div>
+
+    <br />
+
+    <input type="submit"
+           value="Upload"
+           class="btn btn-primary" />
+
+    <a asp-action="Index"
+       asp-route-vendorId="@ViewBag.VendorId"
+       class="btn btn-secondary">
+        Back
+    </a>
+
+</form>

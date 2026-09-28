@@ -24,6 +24,10 @@ builder.Services.AddSession(options =>
 });
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IVendorDocumentRepository, VendorDocumentService>();
+
+builder.Services.AddScoped<IVendorRepository, VendorService>();
+
 
 var app = builder.Build();
 
