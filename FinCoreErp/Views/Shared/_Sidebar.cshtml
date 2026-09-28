@@ -1,0 +1,274 @@
+﻿<aside class="admin-sidebar">
+
+    <!-- Logo -->
+    <div class="sidebar-logo">
+
+        <h2>FinCore ERP</h2>
+
+    </div>
+
+
+    <p class="sidebar-title">
+        MAIN MENU
+    </p>
+
+
+    <nav class="sidebar-menu">
+
+
+        <!-- Dashboard -->
+
+        <a asp-controller="Home"
+           asp-action="Index"
+           class="sidebar-link">
+
+            <i class="bi bi-speedometer2"></i>
+
+            <span>Dashboard</span>
+
+        </a>
+
+
+        <!-- Authentication & User Management -->
+
+        <details>
+
+            <summary class="sidebar-link">
+
+                <i class="bi bi-people"></i>
+
+                <span>User Management</span>
+
+                <span class="menu-arrow">⌄</span>
+
+            </summary>
+
+
+            <div class="submenu">
+
+                <a asp-controller="User"
+                   asp-action="Index">
+
+                    Users
+
+                </a>
+
+
+                <a asp-controller="Role"
+                   asp-action="Index">
+
+                    Roles
+
+                </a>
+
+
+                <a asp-controller="Permission"
+                   asp-action="Index">
+
+                    Permissions
+
+                </a>
+
+            </div>
+
+        </details>
+
+
+        <!-- Organization Management -->
+
+        <details>
+
+            <summary class="sidebar-link">
+
+                <i class="bi bi-building"></i>
+
+                <span>Organization</span>
+
+                <span class="menu-arrow">⌄</span>
+
+            </summary>
+
+
+            <div class="submenu">
+
+                <a asp-controller="Company"
+                   asp-action="Index">
+
+                    Companies
+
+                </a>
+
+
+                <a asp-controller="Department"
+                   asp-action="Index">
+
+                    Departments
+
+                </a>
+
+
+                <a asp-controller="Employee"
+                   asp-action="Index">
+
+                    Employees
+
+                </a>
+
+            </div>
+
+        </details>
+
+
+        <!-- Workflow -->
+
+        <details>
+
+            <summary class="sidebar-link">
+
+                <i class="bi bi-diagram-3"></i>
+
+                <span>Workflow</span>
+
+                <span class="menu-arrow">⌄</span>
+
+            </summary>
+
+
+            <div class="submenu">
+
+                <a asp-controller="Workflow"
+                   asp-action="Index">
+
+                    Workflow Definitions
+
+                </a>
+
+
+                <a asp-controller="Approval"
+                   asp-action="Index">
+
+                    Approvals
+
+                </a>
+
+
+                <a asp-controller="Approval"
+                   asp-action="History">
+
+                    Approval History
+
+                </a>
+
+            </div>
+
+        </details>
+
+        <!-- Vendor Management -->
+
+        <details>
+
+            <summary class="sidebar-link">
+
+                <i class="bi bi-people"></i>
+
+                <span>Vendor Management</span>
+
+                <span class="menu-arrow">⌄</span>
+
+            </summary>
+
+
+            <div class="submenu">
+
+                <a asp-controller="Vendor"
+                   asp-action="Index">
+
+                    Vendors Information
+
+                </a>
+
+
+                <a asp-controller="VendorDocument"
+                   asp-action="Index">
+
+                    Vendors Documents
+
+                </a>
+
+            </div>
+
+        </details>
+
+        <!-- Purchase Management -->
+
+        <details>
+
+            <summary class="sidebar-link">
+
+                <i class="bi bi-people"></i>
+
+                <span>Purchase Management</span>
+
+                <span class="menu-arrow">⌄</span>
+
+            </summary>
+
+
+            <div class="submenu">
+
+                <a asp-controller="#"
+                   asp-action="#">
+
+                    Demo Information
+
+                </a>
+
+            </div>
+
+        </details>
+
+        <!-- RFQ Management -->
+
+        <details>
+
+            <summary class="sidebar-link">
+
+                <i class="bi bi-people"></i>
+
+                <span>RFQ Management</span>
+
+                <span class="menu-arrow">⌄</span>
+
+            </summary>
+
+
+            <div class="submenu">
+
+                <a asp-controller="#"
+                   asp-action="#">
+
+                    Demo Information
+
+                </a>
+
+            </div>
+
+        </details>
+
+
+        <!-- Logout -->
+
+        <a asp-controller="Auth"
+           asp-action="Logout"
+           class="sidebar-link logout-link">
+
+            <i class="bi bi-box-arrow-right"></i>
+
+            <span>Logout</span>
+
+        </a>
+
+
+    </nav>
+
+</aside>
