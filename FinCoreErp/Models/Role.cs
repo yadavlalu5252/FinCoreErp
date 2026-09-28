@@ -28,15 +28,14 @@ namespace FinCoreErp.Models
         public byte? IsActive { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? ModifiedAt { get; set; }
-
-        [Required]
+      
         [ForeignKey("CreatedByUser")]
-        public int CreatedBy { get; set; }
+        public int? CreatedBy { get; set; }
         public User CreatedByUser { get; set; }
 
-        [Required]
+        
         [ForeignKey("ModifiedByUser")]
-        public int ModifiedBy { get; set; }
+        public int? ModifiedBy { get; set; }
         public User ModifiedByUser { get; set; }
 
         // Navigation Properties
