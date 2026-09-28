@@ -118,53 +118,10 @@
 
         </details>
 
-        <!-- Budget -->
-        <details>
-
-            <summary class="sidebar-link">
-
-                <i class="bi bi-people"></i>
-
-                <span>Budget Management</span>
-
-                <span class="menu-arrow">⌄</span>
-
-            </summary>
-
-
-            <div class="submenu">
-
-                <a asp-controller="BudgetCategory"
-                   asp-action="Index">
-
-                    Budget Categories
-
-                </a>
-
-
-
-                <a asp-controller="Budget"
-                   asp-action="Index">
-
-                    Budgets
-
-                </a>
-
-
-
-                <a asp-controller="BudgetLine"
-                   asp-action="Index">
-
-                    Budget Lines
-
-                </a>
-
-            </div>
-
-        </details>
 
         <!-- Workflow -->
 
+        <!-- Budget -->
         <details>
 
             <summary class="sidebar-link">
@@ -172,6 +129,9 @@
                 <i class="bi bi-diagram-3"></i>
 
                 <span>Workflow</span>
+                <i class="bi bi-people"></i>
+
+                <span>Budget Management</span>
 
                 <span class="menu-arrow">⌄</span>
 
@@ -184,10 +144,136 @@
                    asp-action="Index">
 
                     Workflow Definitions
+                <a asp-controller="BudgetCategory"
+                   asp-action="Index">
+
+                    Budget Categories
 
                 </a>
 
 
+                <a asp-controller="Approval"
+                   asp-action="Index">
+
+                    Approvals
+
+                <a asp-controller="Budget"
+                   asp-action="Index">
+
+                    Budgets
+
+                </a>
+
+
+                <a asp-controller="Approval"
+                   asp-action="History">
+
+                    Approval History
+
+                <a asp-controller="BudgetLine"
+                   asp-action="Index">
+
+                    Budget Lines
+
+                </a>
+
+            </div>
+
+        </details>
+
+        <!-- Vendor Management -->
+        <!-- Workflow -->
+
+        <details>
+
+            <summary class="sidebar-link">
+
+                <i class="bi bi-people"></i>
+
+                <span>Vendor Management</span>
+                <i class="bi bi-diagram-3"></i>
+
+                <span>Workflow</span>
+
+                <span class="menu-arrow">⌄</span>
+
+            </summary>
+
+
+            <div class="submenu">
+
+                <a asp-controller="Vendor"
+                   asp-action="Index">
+
+                    Vendors Information
+                <a asp-controller="Workflow"
+                   asp-action="Index">
+
+                    Workflow Definitions
+
+                </a>
+
+
+                <a asp-controller="VendorDocument"
+                   asp-action="Index">
+
+                    Vendors Documents
+
+                </a>
+
+            </div>
+
+        </details>
+
+        <!-- Purchase Management -->
+
+        <details>
+
+            <summary class="sidebar-link">
+
+                <i class="bi bi-people"></i>
+
+                <span>Purchase Management</span>
+
+                <span class="menu-arrow">⌄</span>
+
+            </summary>
+
+
+            <div class="submenu">
+
+                <a asp-controller="#"
+                   asp-action="#">
+
+                    Demo Information
+
+                </a>
+
+            </div>
+
+        </details>
+
+        <!-- RFQ Management -->
+
+        <details>
+
+            <summary class="sidebar-link">
+
+                <i class="bi bi-people"></i>
+
+                <span>RFQ Management</span>
+
+                <span class="menu-arrow">⌄</span>
+
+            </summary>
+
+
+            <div class="submenu">
+
+                <a asp-controller="#"
+                   asp-action="#">
+
+                    Demo Information
                 <a asp-controller="Approval"
                    asp-action="Index">
 
