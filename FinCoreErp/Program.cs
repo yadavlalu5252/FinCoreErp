@@ -26,6 +26,9 @@ builder.Services.AddSession(options =>
 });
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IAssetListService, AssetListService>();
+builder.Services.AddScoped<IAssetRegisterService, AssetRegisterService>();
+builder.Services.AddScoped<IAssetDisposalService, AssetDisposalService>();
 builder.Services.AddScoped<IBudgetCategoryService, BudgetCategoryService>();
 builder.Services.AddScoped<IBudgetService, BudgetService>();
 builder.Services.AddScoped<IBudgetLineService, BudgetLineService>();
