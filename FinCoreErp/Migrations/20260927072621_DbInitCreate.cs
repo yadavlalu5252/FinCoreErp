@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FinCoreErp.Migrations
 {
     /// <inheritdoc />
-    public partial class modeladded : Migration
+    public partial class DbInitCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -980,7 +980,6 @@ namespace FinCoreErp.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RoleName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true),
                     IsActive = table.Column<byte>(type: "tinyint", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -1871,11 +1870,6 @@ namespace FinCoreErp.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Roles_UserId",
-                table: "Roles",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_States_CountryId",
                 table: "States",
                 column: "CountryId");
@@ -2638,13 +2632,6 @@ namespace FinCoreErp.Migrations
                 principalTable: "Users",
                 principalColumn: "UserId",
                 onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Roles_Users_UserId",
-                table: "Roles",
-                column: "UserId",
-                principalTable: "Users",
-                principalColumn: "UserId");
         }
 
         /// <inheritdoc />
@@ -2676,10 +2663,6 @@ namespace FinCoreErp.Migrations
 
             migrationBuilder.DropForeignKey(
                 name: "FK_Roles_Users_ModifiedBy",
-                table: "Roles");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Roles_Users_UserId",
                 table: "Roles");
 
             migrationBuilder.DropForeignKey(

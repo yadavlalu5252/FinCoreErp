@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinCoreErp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260927052545_updatedb")]
-    partial class updatedb
+    [Migration("20260927072621_DbInitCreate")]
+    partial class DbInitCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
