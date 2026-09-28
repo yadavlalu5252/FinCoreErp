@@ -1,0 +1,97 @@
+﻿@model FinCoreErp.DTO.Asset.AssetDetailsDto
+
+@{
+    ViewData["Title"] = "Asset Details";
+}
+
+<div class="container-fluid">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Asset Details</h2>
+
+        <a asp-controller="AssetList"
+           asp-action="Index"
+           class="btn btn-secondary">
+            Back to Asset List
+        </a>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+                    <strong>Asset Code</strong>
+                    <p>@Model.AssetCode</p>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <strong>Asset Name</strong>
+                    <p>@Model.AssetName</p>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <strong>Vendor</strong>
+                    <p>@Model.VendorCode</p>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <strong>Department</strong>
+                    <p>@Model.DepartmentName</p>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <strong>CAPEX Request</strong>
+                    <p>@Model.CapexRequestTitle</p>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <strong>Purchase Order</strong>
+                    <p>@Model.POCode</p>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <strong>GRN</strong>
+                    <p>@Model.GRNCode</p>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <strong>Purchase Date</strong>
+                    <p>
+                        @(Model.PurchaseDate?.ToString("dd-MM-yyyy") ?? "-")
+                    </p>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <strong>Purchase Cost</strong>
+                    <p>
+                        @(Model.PurchaseCost?.ToString("N2") ?? "-")
+                    </p>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <strong>Status</strong>
+                    <p>@Model.Status</p>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <strong>Created At</strong>
+                    <p>
+                        @(Model.CreatedAt?.ToString("dd-MM-yyyy HH:mm") ?? "-")
+                    </p>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <strong>Modified At</strong>
+                    <p>
+                        @(Model.ModifiedAt?.ToString("dd-MM-yyyy HH:mm") ?? "-")
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

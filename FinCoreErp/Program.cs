@@ -24,6 +24,9 @@ builder.Services.AddSession(options =>
 });
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IAssetListService, AssetListService>();
+builder.Services.AddScoped<IAssetRegisterService, AssetRegisterService>();
+builder.Services.AddScoped<IAssetDisposalService, AssetDisposalService>();
 
 var app = builder.Build();
 
