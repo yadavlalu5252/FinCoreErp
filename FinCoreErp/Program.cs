@@ -33,7 +33,7 @@ builder.Services.AddScoped<IBudgetCategoryService, BudgetCategoryService>();
 builder.Services.AddScoped<IBudgetService, BudgetService>();
 builder.Services.AddScoped<IBudgetLineService, BudgetLineService>();
 builder.Services.AddScoped<IVendorDocumentRepository, VendorDocumentService>();
-
+builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IVendorRepository, VendorService>();
 
 

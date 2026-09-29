@@ -13,12 +13,15 @@ namespace FinCoreErp.Controllers.Auth
             this.service = service;
         }
 
-        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
 
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
         [HttpGet]
         public IActionResult Register()
         {

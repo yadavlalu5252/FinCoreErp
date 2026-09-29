@@ -1,12 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FinCoreErp.Data;
+using FinCoreErp.Filter;
+using FinCoreErp.Models;
+using FinCoreErp.Repository;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using FinCoreErp.Repository;
-using FinCoreErp.Models;
-using FinCoreErp.Data;
 
 namespace FinCoreErp.Controllers
 {
+    [SessionAuthorize]
+    [RoleAuthorize("Administrator")]
     public class VendorController : Controller
     {
         IVendorRepository vendorService;
